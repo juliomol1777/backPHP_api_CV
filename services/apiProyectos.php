@@ -1,19 +1,19 @@
 <?php
 
-include_once 'datos.php';
+include_once './DAO/proyectos.php';
 
-class ApiDatos{
+class ApiProyectos{
 
     private $error;
     private $imagen;
 
 
     function getAll(){
-        $pelicula = new Pelicula();
-        $peliculas = array();
-        $peliculas["items"] = array();
+        $proyecto = new Proyectos();
+        $proyectos = array();
+        $proyectos["items"] = array();
 
-        $res = $pelicula->obtenerPeliculas();
+        $res = $proyecto->obtenerProyectos();
 
         if($res->rowCount()){
             while ($row = $res->fetch(PDO::FETCH_ASSOC)){
@@ -24,45 +24,15 @@ class ApiDatos{
                     "info" => $row['info'],
                     "name" => $row['name'],
                 );
-                array_push($peliculas["items"], $item);
+                array_push($proyectos["items"], $item);
             }
         
-            $this->printJSON($peliculas);
+            $this->printJSON($proyectos);
         }else{
             $this->error('No hay elementos');
         }
     }
-/*
-    function getById($id){
-        $pelicula = new Pelicula();
-        $peliculas = array();
-        $peliculas["items"] = array();
-
-        $res = $pelicula->obtenerPelicula($id);
-
-        if($res->rowCount() == 1){
-            $row = $res->fetch();
-        
-            $item=array(
-                "id" => $row['id'],
-                "nombre" => $row['nombre'],
-                "imagen" => $row['imagen'],
-            );
-            array_push($peliculas["items"], $item);
-            $this->printJSON($peliculas);
-        }else{
-            $this->error('No hay elementos');
-        }
-    }
-
-    function add($item){
-        $pelicula = new Pelicula();
-
-        $res = $pelicula->nuevaPelicula($item);
-        $this->exito('Nueva pelicula registrada');
-    }
-
-*/
+    
     function error($mensaje){
         echo '<code>' . json_encode(array('mensaje' => $mensaje)) . '</code>'; 
     }
@@ -74,6 +44,48 @@ class ApiDatos{
     function printJSON($array){
         echo '<code>'.json_encode($array).'</code>';
     }
+
+    
+    function getImagen(){
+        return $this->imagen;
+    }
+
+    function getError(){
+        return $this->error;
+    }
+
+    /*
+    function getById($id){
+        $proyecto = new Proyectos();
+        $proyectos = array();
+        $proyectos["items"] = array();
+
+        $res = $proyecto->obtenerProyectos($id);
+
+        if($res->rowCount() == 1){
+            $row = $res->fetch();
+        
+            $item=array(
+                    "id" => $row['id'],
+                    "image" => $row['image'],
+                    "info" => $row['info'],
+                    "name" => $row['name'],
+                );
+            array_push($proyectos["items"], $item);
+            $this->printJSON($proyectos);
+        }else{
+            $this->error('No hay elementos');
+        }
+    }
+
+    function add($item){
+        $pelicula = new Proyectos();
+
+        $res = $proyecto->nuevoProyecto($item);
+        $this->exito('Nueva pelicula registrada');
+    }
+
+
 
     function subirImagen($file){
         $directorio = "imagenes/";
@@ -115,14 +127,7 @@ class ApiDatos{
             return false;
         }
     }
-
-    function getImagen(){
-        return $this->imagen;
-    }
-
-    function getError(){
-        return $this->error;
-    }
+*/
 }
 
 ?>

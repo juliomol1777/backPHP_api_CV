@@ -1,11 +1,11 @@
 <?php
 
-    include_once 'apidatos.php';
+    include_once './services/apiProyectos.php';
     
-    $api = new ApiDatos();
+    $api = new ApiProyectos();
     $nombre = '';
     $error = '';
-
+/*
     if(isset($_POST['nombre']) && isset($_FILES['imagen'])){
 
         if($api->subirImagen($_FILES['imagen'])){
@@ -20,7 +20,7 @@
     }else{
         $api->error('Error al llamar a la API');
     }
-
++/
 
     
 ?>

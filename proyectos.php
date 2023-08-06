@@ -1,7 +1,7 @@
 <?php
-    include_once 'apidatos.php';
+    include_once './services/apiProyectos.php';
 
-    $api = new ApiDatos();
+    $api = new ApiProyectos();
     $api->getAll();
 /*
     if(isset($_GET['id'])){
