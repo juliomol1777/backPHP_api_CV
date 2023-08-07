@@ -1,11 +1,11 @@
 <?php
-
+/*
     include_once './services/apiProyectos.php';
     
     $api = new ApiProyectos();
     $nombre = '';
     $error = '';
-/*
+
     if(isset($_POST['nombre']) && isset($_FILES['imagen'])){
 
         if($api->subirImagen($_FILES['imagen'])){

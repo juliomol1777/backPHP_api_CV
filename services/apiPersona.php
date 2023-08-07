@@ -1,33 +1,39 @@
 <?php
 
-include_once './DAO/proyectosDao.php';
+include_once './DAO/personaDao.php';
 
-class ApiProyectos{
+class ApiPersona{
 
     private $error;
     private $imagen;
 
 
     function getAll(){
-        $proyecto = new Proyectos();
-        $proyectos = array();
-        $proyectos["items"] = array();
+        $persona = new Persona();
+        $lista = array();
+        $lista["items"] = array();
 
-        $res = $proyecto->obtenerProyectos();
+        $res = $persona->obtenerPersona();
 
         if($res->rowCount()){
             while ($row = $res->fetch(PDO::FETCH_ASSOC)){
     
                 $item=array(
                     "id" => $row['id'],
+                    "about" => $row['about'],
+                    "email" => $row['email'],
+                    "fullname" => $row['fullname'],
                     "image" => $row['image'],
-                    "info" => $row['info'],
-                    "name" => $row['name'],
+                    "image_background" => $row['image_background'],
+                    "position" => $row['position'],
+                    "ubication" => $row['ubication'],
+                    "url_github" => $row['url_github'],
+                    "url_in" => $row['url_in'],
                 );
-                array_push($proyectos["items"], $item);
+                array_push($lista["items"], $item);
             }
         
-            $this->printJSON($proyectos);
+            $this->printJSON($lista);
         }else{
             $this->error('No hay elementos');
         }

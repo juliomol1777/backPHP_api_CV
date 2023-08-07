@@ -1,11 +1,11 @@
 <?php
 
-include_once 'db.php';
+include_once './config/db.php';
 
-class Proyectos extends DB{
+class Persona extends DB{
     
-    function obtenerProyectos(){
-        $query = $this->connect()->query('SELECT * FROM proyectos');
+    function obtenerPersona(){
+        $query = $this->connect()->query('SELECT * FROM persona');
         return $query;
     }
 /*
