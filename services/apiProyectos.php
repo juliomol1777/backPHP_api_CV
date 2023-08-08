@@ -10,8 +10,8 @@ class ApiProyectos{
 
     function getAll(){
         $proyecto = new Proyectos();
-        $proyectos = array();
-        $proyectos["items"] = array();
+        $lista = array();
+        //$proyectos["items"] = array();
 
         $res = $proyecto->obtenerProyectos();
 
@@ -24,10 +24,11 @@ class ApiProyectos{
                     "info" => $row['info'],
                     "name" => $row['name'],
                 );
-                array_push($proyectos["items"], $item);
+                //array_push($lista["items"], $item);
+                array_push($lista, $item);
             }
         
-            $this->printJSON($proyectos);
+            $this->printJSON($lista);
         }else{
             $this->error('No hay elementos');
         }
@@ -42,7 +43,8 @@ class ApiProyectos{
     }
 
     function printJSON($array){
-        echo '<code>'.json_encode($array).'</code>';
+        //echo '<code>'.json_encode($array).'</code>';
+        echo json_encode($array);
     }
 
     

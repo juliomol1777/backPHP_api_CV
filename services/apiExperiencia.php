@@ -11,7 +11,7 @@ class ApiExperiencia{
     function getAll(){
         $experiencia = new Experiencia();
         $lista = array();
-        $lista["items"] = array();
+        //$lista["items"] = array();
 
         $res = $experiencia->obtenerExperiencia();
 
@@ -29,7 +29,8 @@ class ApiExperiencia{
                     "time" => $row['time'],
                     "image" => $row['image'],
                 );
-                array_push($lista["items"], $item);
+                //array_push($lista["items"], $item);
+                array_push($lista, $item);
             }
         
             $this->printJSON($lista);
@@ -47,7 +48,8 @@ class ApiExperiencia{
     }
 
     function printJSON($array){
-        echo '<code>'.json_encode($array).'</code>';
+        //echo '<code>'.json_encode($array).'</code>';
+        echo json_encode($array);
     }
 
     

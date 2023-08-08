@@ -11,7 +11,7 @@ class ApiPersona{
     function getAll(){
         $persona = new Persona();
         $lista = array();
-        $lista["items"] = array();
+        //$lista["items"] = array();
 
         $res = $persona->obtenerPersona();
 
@@ -30,7 +30,9 @@ class ApiPersona{
                     "url_github" => $row['url_github'],
                     "url_in" => $row['url_in'],
                 );
-                array_push($lista["items"], $item);
+
+                //array_push($lista["items"], $item);
+                array_push($lista, $item);
             }
         
             $this->printJSON($lista);
@@ -48,7 +50,8 @@ class ApiPersona{
     }
 
     function printJSON($array){
-        echo '<code>'.json_encode($array).'</code>';
+        //echo '<code>'.json_encode($array).'</code>';
+        echo json_encode($array);
     }
 
     

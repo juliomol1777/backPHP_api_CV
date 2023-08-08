@@ -11,7 +11,7 @@ class ApiEducacion{
     function getAll(){
         $educacion = new Educacion();
         $lista = array();
-        $lista["items"] = array();
+        //$lista["items"] = array();
 
         $res = $educacion->obtenerEducacion();
 
@@ -27,7 +27,8 @@ class ApiEducacion{
                     "start" => $row['start'],
                     "title" => $row['title'],
                 );
-                array_push($lista["items"], $item);
+                //array_push($lista["items"], $item);
+                array_push($lista, $item);
             }
         
             $this->printJSON($lista);
@@ -45,7 +46,8 @@ class ApiEducacion{
     }
 
     function printJSON($array){
-        echo '<code>'.json_encode($array).'</code>';
+        //echo '<code>'.json_encode($array).'</code>';
+        echo json_encode($array);
     }
 
     
